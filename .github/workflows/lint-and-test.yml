@@ -1,0 +1,46 @@
+name: Lint and Test
+
+on: push
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_DATABASE: test
+          MYSQL_ROOT_PASSWORD: mysql
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    env:
+      DB_USER: root
+      DB_PASS: mysql
+      DB_NAME: test   
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      USERS_PASS: ${{ secrets.USERS_PASS }}
+      NODE_ENV: test
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        working-directory: ./project/node-app/
+        run: npm install
+      - name: Migration
+        working-directory: ./project/node-app/
+        run: npx sequelize-cli db:migrate
+      - name: Seeding 
+        working-directory: ./project/node-app/
+        run: npx sequelize-cli db:seed:all
+      - name: Test
+        working-directory: ./project/node-app/
+        run: npm run test
+      - name: Lint
+        working-directory: ./project/node-app/
+        run: npm run lint
+      - working-directory: ./project/node-app/
+        run: npm run lint:fix

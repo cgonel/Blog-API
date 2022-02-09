@@ -1,0 +1,35 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "The goal of this project is to build a scalable ExpressJS application that allows users to post and comment on posts. This should be an individual project.\r You may begin working on the project at any point however it is designed to be started during the final week.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "start:production": "NODE_ENV=production node index.js",
+    "test": "mocha --exit",
+    "format": "prettier --write .",
+    "lint": "eslint . ",
+    "lint:fix": "eslint . --fix "
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.6.0",
+    "eslint-config-prettier": "^8.3.0",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1",
+    "sequelize-cli": "^6.4.1"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "express-jwt": "^6.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "mocha": "^9.1.4",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.12.5",
+    "supertest": "^6.2.1"
+  }
+}
