@@ -14,7 +14,5 @@ export const findUserId = async (username) => {
 export const comparePassword = async (password) => {
   const user = await User.findOne()
   const result = await bcrypt.compare(password, user.password)
-  console.log(password)
-  console.log(user.password)
   return result
 }
