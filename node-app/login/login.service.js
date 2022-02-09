@@ -12,11 +12,7 @@ export const findUserId = async (username) => {
 }
 
 export const comparePassword = async (password) => {
-  const user = await User.findAll({
-    where: {
-      id: 1
-    }
-  })
-  const result = await bcrypt.compare(password, user[0].password)
+  const user = await User.findOne()
+  const result = await bcrypt.compare(password, user.password)
   return result
 }
