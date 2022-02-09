@@ -28,19 +28,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Install dependencies
-        working-directory: ./project/node-app/
+        working-directory: ./node-app
         run: npm install
       - name: Migration
-        working-directory: ./project/node-app/
+        working-directory: ./node-app
         run: npx sequelize-cli db:migrate
       - name: Seeding 
-        working-directory: ./project/node-app/
+        working-directory: ./node-app
         run: npx sequelize-cli db:seed:all
       - name: Test
-        working-directory: ./project/node-app/
+        working-directory: ./node-app
         run: npm run test
       - name: Lint
-        working-directory: ./project/node-app/
+        working-directory: ./node-app
         run: npm run lint
-      - working-directory: ./project/node-app/
+      - working-directory: ./node-app
         run: npm run lint:fix
