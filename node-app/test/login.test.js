@@ -13,7 +13,7 @@ const wrongPassword = 'wrongPassword'
 
 describe('route POST /login unit tests', () => {
   it('Should be able to login with correct credentials', async () => {
-    const match = await service.comparePassword(process.env.USERS_PASS)
+    const match = await service.comparePassword(password)
     assert.equal(match, true)
   })
   it('Should not be able to login with incorrect username', async () => {
